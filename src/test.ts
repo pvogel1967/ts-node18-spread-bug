@@ -14,7 +14,7 @@ const barTest = new TestDataDTO();
 // with many optional fields via JSON and, after validating the DTO content, spreads it into an
 // "empty" object created via new.
 const { legacyB,...restDto } = {...barTest, ...bar};
-// This line is what causes the problem.  We successfully spread { b: legacyB } into the result
+// This next line is what causes the problem.  We successfully spread { b: legacyB } into the result
 // but then the spread of what _should be_ an empty restDto overwrites the b property with undefined.
 const result3: TestData = {
     ...(legacyB ? { b: legacyB } : {}),
