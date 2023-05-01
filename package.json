@@ -5,7 +5,9 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc -p tsconfig.json",
-        "test": "node dist/src/test.js | grep pass || echo FAILED"
+        "build:topass": "tsc -p tsconfig.willpass.json",
+        "test": "node dist/src/test.js | grep pass || echo FAILED",
+        "test:verbose": "node dist/src/test.js"
     },
     "devDependencies": {
         "@tsconfig/node18": "1.0.3",

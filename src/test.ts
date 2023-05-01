@@ -1,16 +1,24 @@
-import { TestDataDTO } from './test-data-dto';
-import { TestData } from 'test-data';
+class TestDataDTO {
+    a?: string;
+    b?: string;
+    legacyB?: string;
+}
 
+class TestData {
+    a?: string;
+    b?: string;
+}
 const bar: TestDataDTO = { legacyB: 'pass' };
 const barTest = new TestDataDTO();
+// this next line simulates what you typically get from an API layer which is receiving a DTO
+// with many optional fields via JSON and, after validating the DTO content, spreads it into an
+// "empty" object created via new.
 const { legacyB,...restDto } = {...barTest, ...bar};
 const result3: TestData = {
     ...(legacyB ? { b: legacyB } : {}),
     ...restDto
 }
 console.log(JSON.stringify(result3, null, 2)); // should be { "b": "pass" }
-console.log(`bar keys`, JSON.stringify(Object.keys(bar)));
-console.log(`restDto keys`, JSON.stringify(Object.keys(restDto)));
-console.log(`barTest keys`, JSON.stringify(Object.keys(barTest)));
-console.log(`result3 keys`, JSON.stringify(Object.keys(result3)));
-
+console.log(`restDto keys`, JSON.stringify(Object.keys(restDto))); // should be [] but is ["a", "b"]
+console.log(`barTest keys`, JSON.stringify(Object.keys(barTest))); // should be [] but is ["a", "b", "legacyB"]
+console.log(`result3 keys`, JSON.stringify(Object.keys(result3))); // should be ["b"] but is ["b", "a"]
