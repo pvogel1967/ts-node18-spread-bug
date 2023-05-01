@@ -1,0 +1,16 @@
+{
+    "name": "ts-bug-report",
+    "version": "1.0.0",
+    "description": "Demonstrate spread bug",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "tsc -p tsconfig.json",
+        "test": "node dist/src/test.js | grep pass || echo FAILED"
+    },
+    "devDependencies": {
+        "@tsconfig/node18": "1.0.3",
+        "@tsconfig/node16": "1.0.3",
+        "@types/node": "18.16.3",
+        "typescript": "4.9.5"
+    }
+}

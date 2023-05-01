@@ -1,0 +1,11 @@
+# Dependency directory
+node_modules/
+
+# Ignore built ts files
+dist/**/*
+
+#incremental build helper
+tsconfig.tsbuildinfo
+
+# for our test's purposes, we don't need package-lock to be committed
+package-lock.json
